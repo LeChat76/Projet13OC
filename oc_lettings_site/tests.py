@@ -1,22 +1,26 @@
-from django.test import TestCase
+from django.test import TestCase, Client
 
 
 class TestOcLettingsSite(TestCase):
-    def test_access_homepage(client):
+
+    def setUp(self):
+        self.client = Client()
+
+    def test_access_homepage(self):
         """
         test access to homepage
         """
-        response = client.get("/")
+        response = self.client.get("/")
         output = response.status_code
         expected = 200
         assert output == expected
         assert "Welcome to Holiday Homes" in response.content.decode("utf-8")
 
-    def test_access_unavailable_page(client):
+    def test_access_unavailable_page(self):
         """
         test access on an unavailable page
         """
-        response = client.get('/unavailable_page')
+        response = self.client.get('/unavailable_page')
         output = response.status_code
         expected = 404
         assert output == expected

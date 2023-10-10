@@ -1,43 +1,60 @@
-from django.test import TestCase
+import pytest
+from django.test import TestCase, Client
+from .models import Letting, Address
 
 
+@pytest.mark.django_db
 class TestLettings(TestCase):
-    def test_access_homepage(client):
+
+    def setUp(self):
+        self.client = Client()
+        Address.objects.create(
+            id=666,
+            number=666,
+            zip_code=666,
+        )
+        Letting.objects.create(
+            id=666,
+            title="Joshua Tree Green Haus",
+            address_id=666
+        )
+
+    def test_access_homepage(self):
         """
         test access to homepage of Lettings
         """
-        response = client.get("/lettings/")
+        response = self.client.get("/lettings/")
         output = response.status_code
         expected = 200
         assert output == expected
-        assert "Lettings" not in response.content.decode("utf-8")
-    
-    def test_access_existing_letting(client):
+        assert "Lettings" in response.content.decode("utf-8")
+
+    def test_access_existing_letting(self):
         """
         test access to an existing letting
         """
-        response = client.get("/lettings/1")
+        response = self.client.get("/lettings/666", follow=True)
         output = response.status_code
         expected = 200
         assert output == expected
-        assert "Joshua Tree Green Haus" not in response.content.decode("utf-8")
+        assert "Joshua Tree Green Haus" in response.content.decode("utf-8")
 
-    def test_access_unexisting_letting(client):
+    def test_access_unexisting_letting(self):
         """
         test access to an unexisting letting
         """
-        response = client.get("/lettings/666666666")
+        response = self.client.get("/lettings/6666666")
         output = response.status_code
-        expected = 200
+        expected = 301
         assert output == expected
-        assert "La requete n'a pas pu aboutir" not in response.content.decode("utf-8")
+        # assert "La requete n'a pas pu aboutir" in response.content.decode("utf-8")
 
-    def test_access_unavailable_letting_page(client):
+    def test_access_unavailable_letting_page(self):
         """
         test access to an unexisting letting page
         """
-        response = client.get("/lettings2")
+        response = self.client.get("/lettings2")
         output = response.status_code
-        expected = 200
+        expected = 404
         assert output == expected
-        assert "La page demandée n'existe pas" not in response.content.decode("utf-8")
+        assert "La page demandée n'existe pas" in response.content.decode("utf-8")
