@@ -1,10 +1,9 @@
-# from django.urls import resolve
 import sentry_sdk
 
 
 class Sentry404Middleware:
     """
-    class to send to Sentry unavailable page tried to be accessed
+    used to send unavailable page acceded error to Sentry
     """
     def __init__(self, get_response):
         self.get_response = get_response

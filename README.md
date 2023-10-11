@@ -1,3 +1,7 @@
+<p align="center">
+    <img alt="logo" src="https://github.com/LeChat76/Projet13OC/assets/119883313/9b12a59f-24e7-47bb-b4d2-0d3bf2681cff">
+</p>
+
 ## Résumé
 
 Site web d'Orange County Lettings
