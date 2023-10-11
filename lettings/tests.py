@@ -1,12 +1,16 @@
-import pytest
 from django.test import TestCase, Client
 from .models import Letting, Address
 
 
-@pytest.mark.django_db
 class TestLettings(TestCase):
+    """
+    class for lettings tests
+    """
 
     def setUp(self):
+        """
+        init objects for the tests
+        """
         self.client = Client()
         Address.objects.create(
             id=666,
@@ -22,6 +26,8 @@ class TestLettings(TestCase):
     def test_access_homepage(self):
         """
         test access to homepage of Lettings
+        INPUT : valid url '/lettings/'
+        EXPECTED OUTPUT : status code 200 + word 'Lettings' response page
         """
         response = self.client.get("/lettings/")
         output = response.status_code
@@ -32,6 +38,8 @@ class TestLettings(TestCase):
     def test_access_existing_letting(self):
         """
         test access to an existing letting
+        INPUT : valid url '/lettings/666'
+        EXPECTED OUTPUT : status code 200 + words 'Joshua Tree Green Haus' in response page
         """
         response = self.client.get("/lettings/666", follow=True)
         output = response.status_code
@@ -42,6 +50,8 @@ class TestLettings(TestCase):
     def test_access_unexisting_letting(self):
         """
         test access to an unexisting letting
+        INPUT : invalid url '/lettings/6666666'
+        EXPECTED OUTPUT : status code 301
         """
         response = self.client.get("/lettings/6666666")
         output = response.status_code
@@ -52,6 +62,8 @@ class TestLettings(TestCase):
     def test_access_unavailable_letting_page(self):
         """
         test access to an unexisting letting page
+        INPUT : invalid url '/lettings2'
+        EXPECTED OUTPUT : status code 404
         """
         response = self.client.get("/lettings2")
         output = response.status_code

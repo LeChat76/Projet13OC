@@ -1,5 +1,8 @@
-# from django.contrib import admin
+from django.contrib import admin
 
-# from .models import Profile
+from .models import Profile
 
-# admin.site.register(Profile)
+"""
+tables to include in django administration page
+"""
+admin.site.register(Profile)

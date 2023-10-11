@@ -16,6 +16,7 @@ def index(request):
 def profile(request, username):
     """
     This definition is used to generate detailed page for a specific profile
+    INPUT : username
     """
     profile = Profile.objects.get(user__username=username)
     context = {'profile': profile}

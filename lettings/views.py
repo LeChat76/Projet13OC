@@ -16,6 +16,7 @@ def index(request):
 def letting(request, letting_id):
     """
     This fonction is used to generate detailed page for a specific address
+    INPUT : letting ID
     """
     letting = Letting.objects.get(id=letting_id)
     context = {

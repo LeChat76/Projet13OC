@@ -1,13 +1,17 @@
-import pytest
 from django.test import TestCase, Client
 from .models import Profile
 from django.contrib.auth.models import User
 
 
-@pytest.mark.django_db
-class TestLettings(TestCase):
+class TestProfiles(TestCase):
+    """
+    class for profiles tests
+    """
 
     def setUp(self):
+        """
+        init objects for the tests
+        """
         self.client = Client()
         User.objects.create(
             id=666,
@@ -22,6 +26,8 @@ class TestLettings(TestCase):
     def test_access_homepage(self):
         """
         test access to homepage of profiles
+        INPUT : valid url '/profiles/'
+        EXPECTED OUTPUT : status code 200 + word 'profiles' in response page
         """
         response = self.client.get("/profiles/")
         output = response.status_code
@@ -32,6 +38,8 @@ class TestLettings(TestCase):
     def test_access_existing_profile(self):
         """
         test access to an existing profiles
+        INPUT : valid url '/profiles/MrRobot'
+        EXPECTED OUTPUT : status code 200 + word 'MrRobot' in response page
         """
         response = self.client.get("/profiles/MrRobot", follow=True)
         output = response.status_code
@@ -42,6 +50,8 @@ class TestLettings(TestCase):
     def test_access_unexisting_profile(self):
         """
         test access to an unexisting profiles
+        INPUT : invalid url '/profiles/Cedric_Delauney'
+        EXPECTED OUTPUT : status code 301
         """
         response = self.client.get("/profiles/Cedric_Delauney")
         output = response.status_code
@@ -52,6 +62,8 @@ class TestLettings(TestCase):
     def test_access_unexisting_profile_page(self):
         """
         test access to an unexisting profiles page
+        INPUT : invalid url '/profiles2'
+        EXPECTED OUTPUT : status code 404
         """
         response = self.client.get("/profiles2")
         output = response.status_code
