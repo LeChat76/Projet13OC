@@ -13,6 +13,13 @@ COPY . /Project13OC
 # change directory in the image
 WORKDIR /Project13OC
 
+# create virtual environnement
+RUN python -m venv /venv
+
+# activate virtuel environnement
+SHELL ["/bin/sh", "-c"]
+RUN source /venv/bin/activate
+
 # Install dependancies
 RUN pip install -r requirements.txt
 
