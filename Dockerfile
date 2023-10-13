@@ -1,6 +1,9 @@
 # base image
 FROM python:3.11.5-alpine
 
+# update Linux Alpine image
+RUN apk update && apk upgrade
+
 # create directory in the image
 RUN mkdir /Project13OC
 
@@ -12,9 +15,6 @@ WORKDIR /Project13OC
 
 # Install dependancies
 RUN pip install -r requirements.txt
-
-# update Linux Alpine image
-RUN apk update && apk upgrade
 
 # update staticfiles folder in case of modification of files in static folder
 RUN python3 manage.py collectstatic --noinput
