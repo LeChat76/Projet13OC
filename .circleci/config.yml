@@ -27,9 +27,10 @@ jobs:
           command: pytest --nomigrations --disable-warnings
       - run:
           name: Login to Docker Hub
-          command: |
-            echo "$DOCKER_HUB_PASSWORD" | docker login -u "$DOCKER_HUB_USER_ID" --password-stdin
-            docker push lechat76/projet13oc
+          command: echo "$DOCKER_HUB_PASSWORD" | docker login -u "$DOCKER_HUB_USER_ID" --password-stdin
+      - run:
+          name: push image to docker hub
+          command: docker push lechat76/projet13oc
   deploy:
     docker:
       - image: cimg/base:2022.06
