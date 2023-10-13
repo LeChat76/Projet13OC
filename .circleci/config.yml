@@ -10,21 +10,21 @@ jobs:
       - run:
           name: Build Docker Image
           command: docker build -t $DOCKER_HUB_USER_ID/projet13oc .
-      # - run:
-      #     name : upgrade pip
-      #     command : pip install --upgrade pip
-      # - run:
-      #     name: Create a Python virtual environment
-      #     command: python -m venv venv
+      - run:
+          name : upgrade pip
+          command : pip install --upgrade pip
+      - run:
+          name: Create a Python virtual environment
+          command: python -m venv venv
       - run:
           name: Activate the Python virtual environment
           command: . venv/bin/activate
-      # - run:
-      #     name: Install project dependencies
-      #     command: pip install -r requirements.txt
-      # - run:
-      #     name: update staticfiles folder
-      #     command: python3 manage.py collectstatic --noinput
+      - run:
+          name: Install project dependencies
+          command: pip install -r requirements.txt
+      - run:
+          name: update staticfiles folder
+          command: python3 manage.py collectstatic --noinput
       - run:
           name: Run Tests with Pytest
           command: pytest --nomigrations --disable-warnings
