@@ -11,7 +11,7 @@ jobs:
           name: Build Docker Image
           command: docker build -t $DOCKER_HUB_USER_ID/projet13oc .
       - run:
-          name: Activate the Python virtual environment
+          name: activate virtual venv
           command: source /Project13OC/venv/bin/activate
       # - run:
       #     name : upgrade pip
