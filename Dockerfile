@@ -14,20 +14,20 @@ COPY . /Project13OC
 WORKDIR /Project13OC
 
 # create virtual environnement
-# RUN python -m venv /venv
+RUN python -m venv /venv
 
 # activate virtuel environnement
-# SHELL ["/bin/sh", "-c"]
-# RUN source /venv/bin/activate
+SHELL ["/bin/sh", "-c"]
+RUN source /venv/bin/activate
 
 # update pip
-# RUN pip install --upgrade pip
+RUN pip install --upgrade pip
 
 # Install dependancies
-# RUN pip install -r requirements.txt
+RUN pip install -r requirements.txt
 
 # update staticfiles folder in case of modification of files in static folder
-# RUN python3 manage.py collectstatic --noinput
+RUN python3 manage.py collectstatic --noinput
 
 # port where the Django app runs  
 EXPOSE 8000
