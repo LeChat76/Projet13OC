@@ -17,6 +17,9 @@ jobs:
           name: Activate the Python virtual environment
           command: . venv/bin/activate
       - run:
+          name : upgrade pip
+          command : pip install --upgrade pip
+      - run:
           name: Install project dependencies
           command: pip install -r requirements.txt
       - run:
