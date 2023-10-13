@@ -16,9 +16,9 @@ jobs:
       # - run:
       #     name: Create a Python virtual environment
       #     command: python -m venv venv
-      # - run:
-      #     name: Activate the Python virtual environment
-      #     command: . venv/bin/activate
+      - run:
+          name: Activate the Python virtual environment
+          command: . venv/bin/activate
       # - run:
       #     name: Install project dependencies
       #     command: pip install -r requirements.txt
