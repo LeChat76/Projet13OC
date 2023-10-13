@@ -1,0 +1,31 @@
+version: 2.1
+executors:
+  python-executor:
+    docker:
+      - image: cimg/python:3.11.5-alpine
+
+jobs:
+  build:
+    executor: python-executor
+    steps:
+      - checkout
+      - run:
+          name: Install Dependencies
+          command: pip install -r requirements.txt
+
+  test:
+    executor: python-executor
+    steps:
+      - checkout
+      - run:
+          name: Run Tests
+          command: pytest --nomigrations --disable-warnings
+
+workflows:
+  version: 2
+  build-test-deploy:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build

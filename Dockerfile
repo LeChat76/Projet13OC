@@ -7,16 +7,16 @@ RUN mkdir /Project13OC
 # Copy file
 COPY . /Project13OC
 
-# change directory
+# change directory in the image
 WORKDIR /Project13OC
 
 # Install dependancies
 RUN pip install -r requirements.txt
 
-# update Linux image
+# update Linux Alpine image
 RUN apk update && apk upgrade
 
-# update staticfiles folder
+# update staticfiles folder in case of modification of files in static folder
 RUN python3 manage.py collectstatic --noinput
 
 # port where the Django app runs  
