@@ -5,8 +5,8 @@ jobs:
       - image: cimg/python:3.10.2
     steps:
       - checkout
-      # - setup_remote_docker:
-      #     version: 24.0.6
+      - setup_remote_docker:
+          version: 24.0.6
       - run:
           name: Build Docker Image
           command: docker build -t lechat76/projet13oc .
