@@ -17,7 +17,6 @@
 - SQLite3 CLI ou logiciel graphique divers
 - Interpréteur Python, version 3.6 ou supérieure (version utilisée 3.11.5)
 - Docker desktop
-- 
 
 #### Cloner le repository
 
@@ -69,3 +68,15 @@ Si vous souhaitez une interface graphique, je conseil l'utilisation du logiciel 
 
 - Allez sur `http://localhost:8000/admin`
 - Connectez-vous avec l'utilisateur `admin`, mot de passe `Abc1234!`
+
+#### Docker
+
+- executez l'application `Docker Desktop`
+- positionnez-vous dans le dossier racine du projet (là ou se trouve le fichier `manage.py`)
+- lancez la commande `docker build -t lechat76/projet13oc .`
+- executez localement l'image avec la commande `docker run --rm --name projet13oc -p 8000:8000 lechat76/projet13oc`
+- testez à nouveau l'accès à l'application en allant sur `http://localhost:8000` depuis votre navigateur internet
+
+### CircleCi
+
+- 
