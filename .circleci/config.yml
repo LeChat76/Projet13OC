@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: cimg/python:3.11.5-alpine
+      - image: python:3.11.5-alpine
     steps:
       - checkout
       - setup_remote_docker:
@@ -13,6 +13,12 @@ jobs:
       - run:
           name: Run Tests with Pytest
           command: pytest --nomigrations --disable-warnings
+      - run:
+          name: Push Docker Image to Registry
+          command: |
+            echo "Logging in to Docker Hub..."
+            docker login -u $DOCKER_HUB_USER_ID -p $DOCKER_HUB_PASSWORD
+            docker push lechat76/projet13oc
   deploy:
     docker:
       - image: docker:20.10.5
