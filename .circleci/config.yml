@@ -11,7 +11,7 @@ jobs:
           name: Build Docker Image
           command: docker build -t $DOCKER_HUB_USER_ID/projet13oc .
       - run:
-          name: "activate virtual venv"
+          name: activate virtual venv
           command: source /Project13OC/venv/bin/activate
       # - run:
       #     name : upgrade pip
@@ -28,7 +28,7 @@ jobs:
       # - run:
       #     name: update staticfiles folder
       #     command: python3 manage.py collectstatic --noinput
-      # - run:
+      - run:
           name: Run Tests with Pytest
           command: pytest --nomigrations --disable-warnings
       - run:
