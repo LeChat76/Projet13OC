@@ -6,7 +6,7 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker:
-          version: 18.03.1-ce
+          version: 24.0.6
       - run:
           name: Build Docker Image
           command: docker build -t lechat76/projet13oc .
@@ -21,10 +21,10 @@ jobs:
             docker push lechat76/projet13oc
   deploy:
     docker:
-      - image: docker:20.10.5
+      - image: docker:24.0.6
     steps:
       - setup_remote_docker:
-          version: 18.03.1-ce
+          version: 24.0.6
       - run:
           name: Push Docker Image to Registry
           command: docker push lechat76/projet13oc
