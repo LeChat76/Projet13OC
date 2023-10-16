@@ -22,12 +22,9 @@ jobs:
     #   - run:
     #       name: Install project dependencies
     #       command: pip install -r requirements.txt
-      - run:
-          name: Install Django for collectstatic
-          command: pip install django
-      - run:
-          name: update staticfiles folder
-          command: python3 manage.py collectstatic --noinput
+    #   - run:
+    #       name: update staticfiles folder
+    #       command: python3 manage.py collectstatic --noinput
 
   test:
     docker:
