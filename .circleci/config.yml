@@ -18,7 +18,7 @@ jobs:
           command: source venv/bin/activate
       - run:
           name: add virtual env to BASH_ENV for each nexts steps
-          echo "source venv/bin/activate" >> $BASH_ENV
+          command: echo "source venv/bin/activate" >> $BASH_ENV
       - run:
           name: Install project dependencies
           command: pip install -r requirements.txt
