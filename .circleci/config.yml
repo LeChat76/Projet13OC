@@ -11,19 +11,19 @@ jobs:
           name: Build Docker Image
           command: docker build -t $DOCKER_HUB_USER_ID/projet13oc .
       - run:
-          name: upgrade pip
-          command: pip install --upgrade pip
+          name : upgrade pip
+          command : pip install --upgrade pip
       - run:
           name: Create a Python virtual environment
           command: python -m venv venv
       - run:
           name: Activate the Python virtual environment
-          command: . venv/bin/activate
+          command: source venv/bin/activate
       - run:
           name: Install project dependencies
           command: pip install -r requirements.txt
       - run:
-          name: Update staticfiles folder
+          name: update staticfiles folder
           command: python3 manage.py collectstatic --noinput
 
   test:
@@ -31,9 +31,12 @@ jobs:
       - image: cimg/python:3.10.2
     steps:
       - checkout
-    - run:
+      - run:
           name: Activate the Python virtual environment
-          command: . venv/bin/activate
+          command: source venv/bin/activate
+      - run:
+          name: Install test dependencies
+          command: pip install -r test-requirements.txt
       - run:
           name: Run Tests with Pytest
           command: pytest --nomigrations --disable-warnings
@@ -45,7 +48,7 @@ jobs:
       - checkout
       - run:
           name: Activate the Python virtual environment
-          command: . venv/bin/activate      
+          command: source venv/bin/activate
       - run:
           name: Run Flake8 to check linting
           command: flake8
@@ -59,20 +62,3 @@ jobs:
       - run:
           name: Push Docker Image to Registry
           command: docker push lechat76/projet13oc
-
-workflows:
-  version: 2
-  build-and-deploy:
-    jobs:
-      - build:
-          context: my-context
-      - test:
-          requires:
-            - build
-      - lint:
-          requires:
-            - build
-      - deploy:
-          requires:
-            - test
-            - lint
