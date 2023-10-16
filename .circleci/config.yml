@@ -31,12 +31,7 @@ jobs:
       - run:
           name: Run Flake8 to check linting
           command: flake8
-      - run:
-          name: Login to Docker Hub
-          command: echo $DOCKER_HUB_PASSWORD | docker login -u $DOCKER_HUB_USER_ID --password-stdin
-      - run:
-          name: push image to docker hub
-          command: docker push lechat76/projet13oc
+
   deploy:
     docker:
       - image: python:3.11.5-alpine
@@ -46,3 +41,13 @@ jobs:
       - run:
           name: Push Docker Image to Registry
           command: docker push lechat76/projet13oc
+
+workflows:
+  version: 2
+  build-and-deploy:
+    jobs:
+      - build:
+          context: my-context
+      - deploy:
+          requires:
+            - build
