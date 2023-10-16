@@ -16,6 +16,8 @@ jobs:
       - run:
           name: Activate the Python virtual environment
           command: source venv/bin/activate
+          environment:
+            BASH_ENV: venv/bin/activate
       - run:
           name: Install project dependencies
           command: pip install -r requirements.txt
@@ -29,9 +31,6 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Activate the Python virtual environment
-          command: source venv/Scripts/activate
-      - run:
           name: Run Tests with Pytest
           command: pytest --nomigrations --disable-warnings
 
@@ -40,9 +39,6 @@ jobs:
       - image: cimg/python:3.10.2
     steps:
       - checkout
-      - run:
-          name: Activate the Python virtual environment
-          command: source venv/Scripts/activate
       - run:
           name: Run Flake8 to check linting
           command: flake8
