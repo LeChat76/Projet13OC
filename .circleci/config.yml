@@ -30,7 +30,7 @@ jobs:
       - checkout
       - run:
           name: Activate the Python virtual environment
-          command: source Project13OC/venv/Scripts/activate
+          command: source venv/Scripts/activate
       - run:
           name: Run Tests with Pytest
           command: pytest --nomigrations --disable-warnings
@@ -42,7 +42,7 @@ jobs:
       - checkout
       - run:
           name: Activate the Python virtual environment
-          command: source Project13OC/venv/Scripts/activate
+          command: source venv/Scripts/activate
       - run:
           name: Run Flake8 to check linting
           command: flake8
