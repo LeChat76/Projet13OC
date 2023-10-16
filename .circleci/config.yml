@@ -29,6 +29,9 @@ jobs:
           name: Run Tests with Pytest
           command: pytest --nomigrations --disable-warnings
       - run:
+          name: Run Flake8 to check linting
+          command: flake8
+      - run:
           name: Login to Docker Hub
           command: echo $DOCKER_HUB_PASSWORD | docker login -u $DOCKER_HUB_USER_ID --password-stdin
       - run:
