@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Profile
+from .models.profile_model import Profile
 
 """
 tables to include in django administration page

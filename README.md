@@ -15,6 +15,7 @@
 - Compte GitHub avec accès en lecture à ce repository
 - Git CLI
 - SQLite3 CLI ou logiciel graphique divers
+- CircleCi CLI
 - Interpréteur Python, version 3.6 ou supérieure (version utilisée 3.11.5)
 - Docker desktop
 

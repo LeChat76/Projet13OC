@@ -1,5 +1,6 @@
 from django.test import TestCase, Client
-from .models import Letting, Address
+from .models.letting_model import Letting
+from .models.address_model import Address
 
 
 class TestLettings(TestCase):

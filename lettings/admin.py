@@ -1,7 +1,7 @@
 from django.contrib import admin
 
-from .models import Letting
-from .models import Address
+from .models.letting_model import Letting
+from .models.address_model import Address
 
 """
 tables to include in django administration page
