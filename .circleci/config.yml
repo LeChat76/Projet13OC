@@ -31,6 +31,11 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Activate the Python virtual environment for testing
+          command: source venv/bin/activate
+          environment:
+            BASH_ENV: venv/bin/activate
+      - run:
           name: Run Tests with Pytest
           command: pytest --nomigrations --disable-warnings
 
@@ -39,6 +44,11 @@ jobs:
       - image: cimg/python:3.10.2
     steps:
       - checkout
+      - run:
+          name: Activate the Python virtual environment for linting
+          command: source venv/bin/activate
+          environment:
+            BASH_ENV: venv/bin/activate      
       - run:
           name: Run Flake8 to check linting
           command: flake8
