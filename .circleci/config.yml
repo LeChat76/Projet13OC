@@ -34,6 +34,7 @@ jobs:
       - run:
           name: Activate the Python virtual environment
           command: |
+            command: python -m venv venv
             source venv/bin/activate
             pip install pytest
       - run:
@@ -48,6 +49,7 @@ jobs:
       - run:
           name: Activate the Python virtual environment and install pytest
           command: |
+            command: python -m venv venv
             source venv/bin/activate
             pip install pytest
       - run:
