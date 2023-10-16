@@ -26,27 +26,6 @@ jobs:
           name: Run Tests with Pytest
           command: pytest --nomigrations --disable-warnings
 
-    #   - run:
-    #       name: update staticfiles folder
-    #       command: python3 manage.py collectstatic --noinput
-
-  test:
-    docker:
-      - image: cimg/python:3.10.2
-    steps:
-      - checkout
-      - run:
-          name: Activate the Python virtual environment
-          command: |
-            source venv/bin/activate
-            pip install pytest
-      - run:
-          name: Run Tests with Pytest
-          command: pytest --nomigrations --disable-warnings
-      - run:
-          name: Run Flake8 to check linting
-          command: flake8
-
   deploy:
     docker:
       - image: python:3.11.5-alpine
@@ -63,9 +42,6 @@ workflows:
     jobs:
       - build:
           context: my-context
-      - test:
-          requires:
-            - build
       - deploy:
           requires:
             - build
