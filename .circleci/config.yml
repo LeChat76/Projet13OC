@@ -35,9 +35,6 @@ jobs:
           name: Activate the Python virtual environment
           command: source venv/bin/activate
       - run:
-          name: Install test dependencies
-          command: pip install -r test-requirements.txt
-      - run:
           name: Run Tests with Pytest
           command: pytest --nomigrations --disable-warnings
 
@@ -53,12 +50,20 @@ jobs:
           name: Run Flake8 to check linting
           command: flake8
 
-  deploy:
-    docker:
-      - image: python:3.11.5-alpine
-    steps:
-      - setup_remote_docker:
-          version: 19.03.13
-      - run:
-          name: Push Docker Image to Registry
-          command: docker push lechat76/projet13oc
+workflows:
+  version: 2
+  build-and-deploy:
+    jobs:
+      - build:
+          context: my-context
+      - test:
+          requires:
+            - build
+      - lint:
+          requires:
+            - build
+      - deploy:
+          requires:
+            - test
+            - lint
+
