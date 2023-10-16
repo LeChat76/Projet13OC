@@ -11,9 +11,6 @@ jobs:
           name: Build Docker Image
           command: docker build -t $DOCKER_HUB_USER_ID/projet13oc .
       - run:
-          name : upgrade pip
-          command : pip install --upgrade pip
-      - run:
           name: Create a Python virtual environment
           command: python -m venv venv
       - run:
@@ -50,6 +47,16 @@ jobs:
           name: Run Flake8 to check linting
           command: flake8
 
+  deploy:
+    docker:
+      - image: python:3.11.5-alpine
+    steps:
+      - setup_remote_docker:
+          version: 19.03.13
+      - run:
+          name: Push Docker Image to Registry
+          command: docker push lechat76/projet13oc
+
 workflows:
   version: 2
   build-and-deploy:
@@ -66,4 +73,3 @@ workflows:
           requires:
             - test
             - lint
-
