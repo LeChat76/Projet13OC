@@ -11,8 +11,8 @@ jobs:
           name: Build Docker Image
           command: docker build -t $DOCKER_HUB_USER_ID/projet13oc .
       - run:
-          name : upgrade pip
-          command : pip install --upgrade pip
+          name: upgrade pip
+          command: pip install --upgrade pip
       - run:
           name: Create a Python virtual environment
           command: python -m venv venv
@@ -23,11 +23,23 @@ jobs:
           name: Install project dependencies
           command: pip install -r requirements.txt
       - run:
-          name: update staticfiles folder
+          name: Update staticfiles folder
           command: python3 manage.py collectstatic --noinput
+
+  test:
+    docker:
+      - image: cimg/python:3.10.2
+    steps:
+      - checkout
       - run:
           name: Run Tests with Pytest
           command: pytest --nomigrations --disable-warnings
+
+  lint:
+    docker:
+      - image: cimg/python:3.10.2
+    steps:
+      - checkout
       - run:
           name: Run Flake8 to check linting
           command: flake8
@@ -48,6 +60,13 @@ workflows:
     jobs:
       - build:
           context: my-context
-      - deploy:
+      - test:
           requires:
             - build
+      - lint:
+          requires:
+            - build
+      - deploy:
+          requires:
+            - test
+            - lint
