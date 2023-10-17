@@ -1,6 +1,6 @@
 import os
 from django.shortcuts import render
-from .models.letting_model import Letting
+from .models import Letting
 from utils.utils import send_to_sentry
 
 

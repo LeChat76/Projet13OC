@@ -1,6 +1,6 @@
 import os
 from django.shortcuts import render
-from .models.profile_model import Profile
+from .models import Profile
 from utils.utils import send_to_sentry
 
 

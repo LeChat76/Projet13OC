@@ -1,5 +1,5 @@
 from django.db import models
-from .address_model import Address
+from .address import Address
 
 
 class Letting(models.Model):
