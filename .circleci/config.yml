@@ -57,7 +57,7 @@ jobs:
           command: source venv/bin/activate
       - run:
           name: Install project dependencies
-          command: pip install -r requirements.txt
+          command: pip install flake8==3.7.0
       - run:
           name: Run Flake8 to check linting
           command: flake8
