@@ -10,21 +10,46 @@ jobs:
       - run:
           name: Build Docker Image
           command: docker build -t $DOCKER_HUB_USER_ID/projet13oc .
+      # - run:
+      #     name: Create a Python virtual environment
+      #     command: python -m venv venv
+      # - run:
+      #     name: Activate the Python virtual environment
+      #     command: source venv/bin/activate
+      # - run:
+      #     name: Install project dependencies
+      #     command: pip install -r requirements.txt
+      - restore_cache:
+          key: deps1-{{ .Branch }}-{{ checksum "requirements.txt" }}
       - run:
-          name: Create a Python virtual environment
-          command: python -m venv venv
-      - run:
-          name: Activate the Python virtual environment
-          command: source venv/bin/activate
-      - run:
-          name: add virtual env to BASH_ENV for each nexts steps
-          command: echo "source venv/bin/activate" >> $BASH_ENV
-      - run:
-          name: Install project dependencies
-          command: pip install -r requirements.txt
+          command: |
+            python3 -m venv venv
+            . venv/bin/activate
+            pip install --upgrade pip
+            pip install -r requirements.txt
+            
+      - save_cache:
+          key: deps1-{{ .Branch }}-{{ checksum "requirements.txt" }}
+          paths:
+            - "venv"
+
+  test:
+    docker:
+      - image: cimg/python:3.10.2
+    steps:
+      - checkout
       - run:
           name: Run Tests with Pytest
           command: pytest --nomigrations --disable-warnings
+
+  lint:
+    docker:
+      - image: cimg/python:3.10.2
+    steps:
+      - checkout
+      - run:
+          name: Run Flake8 to check linting
+          command: flake8
 
   deploy:
     docker:
@@ -42,6 +67,13 @@ workflows:
     jobs:
       - build:
           context: my-context
-      - deploy:
+      - test:
           requires:
             - build
+      - lint:
+          requires:
+            - build
+      - deploy:
+          requires:
+            - test
+            - lint
