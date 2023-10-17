@@ -32,11 +32,17 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Create a Python virtual environment
+          command: python -m venv venv
+      - run:
           name: Activate the Python virtual environment
-          command: |
-            command: python -m venv venv
-            source venv/bin/activate
-            pip install pytest
+          command: source venv/bin/activate
+      - run:
+          name: add virtual env to BASH_ENV for each nexts steps
+          command: echo "source venv/bin/activate" >> $BASH_ENV
+      - run:
+          name: Install project dependencies
+          command: pip install -r requirements.txt
       - run:
           name: Run Tests with Pytest
           command: pytest --nomigrations --disable-warnings
@@ -47,11 +53,17 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Activate the Python virtual environment and install pytest
-          command: |
-            command: python -m venv venv
-            source venv/bin/activate
-            pip install flake8
+          name: Create a Python virtual environment
+          command: python -m venv venv
+      - run:
+          name: Activate the Python virtual environment
+          command: source venv/bin/activate
+      - run:
+          name: add virtual env to BASH_ENV for each nexts steps
+          command: echo "source venv/bin/activate" >> $BASH_ENV
+      - run:
+          name: Install project dependencies
+          command: pip install -r requirements.txt
       - run:
           name: Run Flake8 to check linting
           command: flake8
