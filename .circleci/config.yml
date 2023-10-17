@@ -64,7 +64,7 @@ jobs:
 
   deploy:
     docker:
-      - image: python:3.11.5-alpine
+      - image: cimg/python:3.10.2
     steps:
       - setup_remote_docker:
           version: 19.03.13
