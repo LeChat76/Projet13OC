@@ -60,11 +60,9 @@ jobs:
             sudo chmod +x render
             sudo mv render /usr/local/bin/render
       - run:
-          name: Render Login
-          command: render login --email "$RENDER_USERNAME" --password "$RENDER_PASSWORD"
-      - run:
-          name: Deploy to Render
-          command: render up -n projet13oc -d $DOCKER_IMAGE
+          command: |
+            render service update projet13oc \
+              --image $DOCKER_IMAGE:latest
 
 workflows:
   version: 2
