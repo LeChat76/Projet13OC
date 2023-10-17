@@ -50,7 +50,7 @@ jobs:
 
   deploye-from-dockerhub-to-render:
     docker:
-      - image: render/python:3.9
+      - image: python:3.9
     steps:
       - checkout
       - run:
