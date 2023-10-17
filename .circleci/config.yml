@@ -56,9 +56,9 @@ jobs:
       - run:
           name: Install Render CLI
           command: |
-            curl -o render https://render.com/download/linux/render
-            chmod +x render
-            mv render /usr/local/bin/render
+            sudo curl -o render https://render.com/download/linux/render
+            sudo chmod +x render
+            sudo mv render /usr/local/bin/render
       - run:
           name: Render Login
           command: render login --email "$RENDER_USERNAME" --password "$RENDER_PASSWORD"
