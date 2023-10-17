@@ -1,78 +1,61 @@
 version: 2.1
+
+description: |
+    "Build, test and deploy to DockerHub"
+
+orbs:
+  python: circleci/python@1.4.0
+  docker: circleci/docker@1.6.0
+
 jobs:
-  build:
-    docker:
-      - image: cimg/python:3.10.2
+  build-and-test:
+    executor: python/default
     steps:
       - checkout
+      - python/install-packages:
+          pip-dependency-file: requirements.txt
+          pkg-manager: pip
+      - run:
+          name: Run Flake8 to check linting
+          command: flake8
+      - run:
+          name: Run Tests with Pytest
+          command: pytest --nomigrations --disable-warnings          
+
+  # test:
+  #   docker:
+  #     - image: cimg/python:3.10.2
+  #   steps:
+  #     - checkout
+  #     - run:
+  #         name: Run Tests with Pytest
+  #         command: pytest --nomigrations --disable-warnings
+
+  # lint:
+  #   docker:
+  #     - image: cimg/python:3.10.2
+  #   steps:
+  #     - checkout
+  #     - run:
+  #         name: Run Flake8 to check linting
+  #         command: flake8
+
+  deploy:
+    executor: docker/default
+    steps:
       - setup_remote_docker:
           version: 19.03.13
       - run:
           name: Build Docker Image
           command: docker build -t $DOCKER_HUB_USER_ID/projet13oc .
-      # - run:
-      #     name: Create a Python virtual environment
-      #     command: python -m venv venv
-      # - run:
-      #     name: Activate the Python virtual environment
-      #     command: source venv/bin/activate
-      # - run:
-      #     name: Install project dependencies
-      #     command: pip install -r requirements.txt
-      - restore_cache:
-          key: v1-python-cache-{{ checksum "requirements.txt" }}
-      - run:
-          name: Install Dependencies and Run Tests
-          command: |
-            python3 -m venv venv
-            . venv/bin/activate
-            pip install -r requirements.txt
-      - save_cache:
-          paths:
-            - venv
-          key: v1-python-cache-{{ checksum "requirements.txt" }}
-
-  test:
-    docker:
-      - image: cimg/python:3.10.2
-    steps:
-      - checkout
-      - run:
-          name: Run Tests with Pytest
-          command: pytest --nomigrations --disable-warnings
-
-  lint:
-    docker:
-      - image: cimg/python:3.10.2
-    steps:
-      - checkout
-      - run:
-          name: Run Flake8 to check linting
-          command: flake8
-
-  deploy:
-    docker:
-      - image: python:3.11.5-alpine
-    steps:
-      - setup_remote_docker:
-          version: 19.03.13
       - run:
           name: Push Docker Image to Registry
           command: docker push lechat76/projet13oc
 
 workflows:
-  version: 2
   build-and-deploy:
     jobs:
-      - build:
-          context: my-context
-      - test:
-          requires:
-            - build
-      - lint:
-          requires:
-            - build
+      - build-and-test:
       - deploy:
           requires:
-            - test
-            - lint
+            - build-and-test
