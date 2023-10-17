@@ -55,11 +55,11 @@ workflows:
   build-and-deploy:
     jobs:
       - test:
-        context: my-context
+          context: my-context
       - lint:
-        context: my-context
+          context: my-context
       - deploy:
-        context: my-context
+          context: my-context
           requires:
             - test
             - lint
