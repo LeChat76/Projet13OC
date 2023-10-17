@@ -15,12 +15,11 @@ jobs:
           pkg-manager: pip
           pip-dependency-file: requirements.txt
       - run:
-          name: Run Pytest
+          name: check test with Pytest
           command: pytest --nomigrations --disable-warnings
-	    - run:
-          name: Run Flake8
+      - run:
+          name: check linting with Flake8
           command: flake8
-		
 
   build-push-docker:
     docker:
