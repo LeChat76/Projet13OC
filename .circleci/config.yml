@@ -3,7 +3,6 @@ version: 2.1
 orbs:
   docker: circleci/docker@2.1.3
   python: circleci/python@2.0.3
-  # render: circleci/render-orb@0.0.16
 
 jobs:
   pytest:
@@ -51,23 +50,15 @@ jobs:
 
   deploye-from-dockerhub-to-render:
     docker:
-      - image: $DOCKER_IMAGE
+      - image: render/python:3.9
     steps:
       - checkout
-      - run:
-          name: Install Render CLI
-          command: |
-            wget https://render.com/download/linux/render
-            chmod +x render
-            mv render /usr/local/bin/render
-
       - run:
           name: Render Login
           command: render login --email "$RENDER_USERNAME" --password "$RENDER_PASSWORD"
       - run:
           name: Deploy to Render
           command: render up -n projet13oc -d $DOCKER_IMAGE
-
 
 workflows:
   version: 2
