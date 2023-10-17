@@ -3,7 +3,7 @@ version: 2.1
 orbs:
   docker: circleci/docker@2.1.3
   python: circleci/python@2.0.3
-  # heroku: circleci/heroku@2.0.0
+  render: circleci/render-orb@1.0.0
 
 jobs:
   pytest:
@@ -49,15 +49,17 @@ jobs:
             docker tag $DOCKER_IMAGE $DOCKER_IMAGE |
             docker push $DOCKER_IMAGE
 
-  # deploye-from-dockerhub-to-heroku:
-  #   docker:
-  #     - image: $DOCKER_HUB_USER_ID/$IMAGE_NAME:$CIRCLE_SHA1
-  #   steps:
-  #     - checkout
-  #     - run:
-  #         name: Deploy Main to Heroku
-  #         command: |
-  #           git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git main
+  deploye-from-dockerhub-to-render:
+    docker:
+      - image: $DOCKER_IMAGE
+    steps:
+      - checkout
+      - run:
+          name: Render Login
+          command: render login --email "$RENDER_USERNAME" --password "$RENDER_PASSWORD"
+      - run:
+          name: Deploy to Render
+          command: render up -n projet13oc -d $DOCKER_IMAGE
 
 
 workflows:
@@ -73,9 +75,9 @@ workflows:
           requires:
             - flake8
             - pytest
-      # - deploye-from-dockerhub-to-heroku:
-      #     filters:
-      #       branches:
-      #         only: master
-      #     requires:
-      #       - build-push-docker
+      - deploye-from-dockerhub-to-render:
+          filters:
+            branches:
+              only: master
+          requires:
+            - build-push-docker
