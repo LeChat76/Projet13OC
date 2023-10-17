@@ -22,9 +22,9 @@ jobs:
       - image: cimg/python:3.10.2
     steps:
       - checkout
-      - python/install-packages:
-          pkg-manager: pip
-          pip-dependency-file: flake8==3.7.0
+      - run:
+          name: Install Flake8
+          command: pip install flake8==3.7.0
       - run:
           name: check linting with Flake8
           command: flake8
