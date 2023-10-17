@@ -67,12 +67,12 @@ workflows:
       - pytest
       - flake8
       - build-push-docker:
-        filters:
-          branches:
-            only: master
-        requires:
-          - flake8
-          - pytest
+          filters:
+            branches:
+              only: master
+          requires:
+            - flake8
+            - pytest
       # - deploye-from-dockerhub-to-heroku:
       #     filters:
       #       branches:
