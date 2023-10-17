@@ -3,12 +3,13 @@ version: 2.1
 orbs:
   docker: circleci/docker@2.1.3
   python: circleci/python@2.0.3
-  # heroku: circleci/heroku@2.0.0
+  heroku: circleci/heroku@2.0.0
+
 
 jobs:
   pytest:
     docker:
-      - image: cimg/python:3.10.2
+      - image: python/default
     steps:
       - checkout
       - python/install-packages:
@@ -19,7 +20,7 @@ jobs:
           command: pytest --nomigrations --disable-warnings
   flake8:
     docker:
-      - image: cimg/python:3.10.2
+      - image: python/default
     steps:
       - checkout
       - run:
@@ -31,14 +32,14 @@ jobs:
 
   build-push-docker:
     docker:
-      - image: cimg/python:3.10.2
+      - image: docker/default
     steps:
       - checkout
       - setup_remote_docker
       - run:
           name: Build docker image
           command:
-            docker build -t lechat76/projet13oc:latest .
+            docker build -t $DOCKER_IMAGE:latest .
       - run:
           name: Connect to Docker Hub
           command:
@@ -46,8 +47,8 @@ jobs:
       - run:
           name: Push docker image
           command:
-            docker tag lechat76/projet13oc lechat76/projet13oc |
-            docker push lechat76/projet13oc
+            docker tag $DOCKER_IMAGE $DOCKER_IMAGE |
+            docker push $DOCKER_IMAGE
 
   # deploye-from-dockerhub-to-heroku:
   #   docker:
