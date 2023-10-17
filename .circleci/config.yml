@@ -6,7 +6,7 @@ orbs:
   # heroku: circleci/heroku@2.0.0
 
 jobs:
-  run-test:
+  pytest:
     docker:
       - image: cimg/python:3.10.2
     steps:
@@ -17,6 +17,14 @@ jobs:
       - run:
           name: check test with Pytest
           command: pytest --nomigrations --disable-warnings
+  flake8:
+    docker:
+      - image: cimg/python:3.10.2
+    steps:
+      - checkout
+      - python/install-packages:
+        pkg-manager: pip
+        pip-dependency-file: flake8
       - run:
           name: check linting with Flake8
           command: flake8
@@ -56,13 +64,15 @@ workflows:
   version: 2
   run_tests_and_build_docker:
     jobs:
-      - run-test
+      - pytest
+      - flake8
       - build-push-docker:
-          filters:
-            branches:
-              only: master
-          requires:
-            - run-test
+        filters:
+          branches:
+            only: master
+        requires:
+          - flake8
+          - pytest
       # - deploye-from-dockerhub-to-heroku:
       #     filters:
       #       branches:
