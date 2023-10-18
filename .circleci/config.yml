@@ -50,20 +50,11 @@ jobs:
 
   deploy-from-dockerhub-to-render:
     docker:
-      - image: cimg/python:3.10.2
+      - image: curlimages/curl:latest
     steps:
-      - checkout
       - run:
-          name: Install Render CLI
-          command: |
-            sudo curl -o render https://render.com/download/linux/render
-            sudo chmod +x render
-            sudo mv render /usr/local/bin/render
-      - run:
-          name: Deploy to Render
-          command: |
-            render service update projet13oc \
-              --image $DOCKER_IMAGE:latest
+          name: Deploy docker hub image to Render
+          command: curl $DEPLOY_HOOK
 
 workflows:
   version: 2
