@@ -10,7 +10,8 @@ Welcome to Projet13OC's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-   Project description <1-project_desc>
+   Project description <1-description>
+   Project installation <2-installation>
 
 
 Indices and tables
