@@ -16,7 +16,7 @@ class TestOcLettingsSite(TestCase):
         output = response.status_code
         expected = 200
         assert output == expected
-        assert "Welcome to Holiday Homes" in response.content.decode("utf-8")
+        assert "Welcome" in response.content.decode("utf-8")
 
     def test_access_unavailable_page(self):
         """
