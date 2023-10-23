@@ -12,7 +12,7 @@ Welcome to Projet13OC's documentation!
 
    Project description <1-description>
    Project installation <2-installation>
-
+   Start project <3-startapp>
 
 Indices and tables
 ==================

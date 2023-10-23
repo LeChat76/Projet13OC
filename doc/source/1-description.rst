@@ -14,9 +14,8 @@ All my tasks:
    * add docstrings in modules, classes and functions
    * add unitaries tests (result should be more than 80%)
 - report errors in Sentry
-- configure CI/CD pipeline with CircleCi
-- errors report to Sentry:
+- configure CI/CD pipeline with CircleCi:
    * first : test code (with Pytest) and check linting (with Flake8)
    * then create image and export in docker hub
    * finaly deploy in Render
-- write a documentation about all this project with ReadTheDocs and Sphinx
+- write this documentation about all this project with ReadTheDocs and Sphinx
