@@ -22,6 +22,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Used technologies" href="4-technologies.html" />
     <link rel="prev" title="Project installation" href="2-installation.html" /> 
 </head>
 
@@ -49,10 +50,12 @@
 <li class="toctree-l1"><a class="reference internal" href="1-description.html">Project description</a></li>
 <li class="toctree-l1"><a class="reference internal" href="2-installation.html">Project installation</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Start project</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#from-the-cloned-repository">From the cloned repository:</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#from-docker-image">From Docker image:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#from-the-cloned-repository">From the cloned repository</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#from-docker-image">From Docker image</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="4-technologies.html">Used technoglies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-database.html">Structure of the database</a></li>
 </ul>
 
         </div>
@@ -83,27 +86,32 @@
 <h1>Start the project<a class="headerlink" href="#start-the-project" title="Link to this heading"></a></h1>
 <p>You can start the project by 2 ways.</p>
 <section id="from-the-cloned-repository">
-<h2>From the cloned repository:<a class="headerlink" href="#from-the-cloned-repository" title="Link to this heading"></a></h2>
-<p>From the root folder of the cloned project (where is located the file manage.py)</p>
+<h2>From the cloned repository<a class="headerlink" href="#from-the-cloned-repository" title="Link to this heading"></a></h2>
+<p>From the root folder of the cloned project (where is located the file <strong>manage.py</strong>) and with virtual environment activated</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>.<span class="se">\m</span>anage.py<span class="w"> </span>runserver
 </pre></div>
 </div>
+<img alt="_images/3-1.png" src="_images/3-1.png" />
 <p>Then, from your favorite web browser, go to:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>http://localhost:8000
 </pre></div>
 </div>
 </section>
 <section id="from-docker-image">
-<h2>From Docker image:<a class="headerlink" href="#from-docker-image" title="Link to this heading"></a></h2>
-<p>Build and push image to Docker Desktop : from the root folder of the cloned project (where is located the file manage.py):</p>
+<h2>From Docker image<a class="headerlink" href="#from-docker-image" title="Link to this heading"></a></h2>
+<p>Build and push image to Docker Desktop (from any folder you want):</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>lechat76/projet13oc:latest<span class="w"> </span>.
 </pre></div>
 </div>
+<img alt="_images/3-2.png" src="_images/3-2.png" />
 <p>Then, start web server</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>--name<span class="w"> </span>projet13oc<span class="w"> </span>-p<span class="w"> </span><span class="m">8000</span>:8000<span class="w"> </span>lechat76/projet13oc
 </pre></div>
 </div>
-<p>Then, from your favorite web browser, go to:</p>
+<img alt="_images/3-3.png" src="_images/3-3.png" />
+<p>or with graphic interface</p>
+<img alt="_images/3-4.png" src="_images/3-4.png" />
+<p>Finally, from your favorite web browser, go to:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>http://localhost:8000
 </pre></div>
 </div>
@@ -115,6 +123,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="2-installation.html" class="btn btn-neutral float-left" title="Project installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="4-technologies.html" class="btn btn-neutral float-right" title="Used technologies" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

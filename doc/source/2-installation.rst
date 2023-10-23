@@ -2,7 +2,9 @@
 Project installation
 ====================
 
-First, you need to install latest version of **Python** https://www.python.org/ and **Git** https://git-scm.com/downloads
+First, you need to install latest version of:
+ - **Python** https://www.python.org/
+ - **Git** https://git-scm.com/downloads
 
 Then, follow steps bellow to install and start the application:
 
@@ -29,7 +31,7 @@ Then, follow steps bellow to install and start the application:
 
     .. code-block:: bash
 
-        .venv/bin/activate
+        venv/bin/activate
 
    * with Windows
 
@@ -37,8 +39,12 @@ Then, follow steps bellow to install and start the application:
 
         venv\Scripts\activate
 
+.. image:: ./images/2-1.png
+
 - install dependancies :
 
 .. code-block:: bash
     
     pip install -r requirements.txt
+
+.. image:: ./images/2-2.png

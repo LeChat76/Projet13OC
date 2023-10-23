@@ -13,6 +13,9 @@ Welcome to Projet13OC's documentation!
    Project description <1-description>
    Project installation <2-installation>
    Start project <3-startapp>
+   Technologies <4-technologies>
+   Database <5-database.rst>
+
 
 Indices and tables
 ==================
