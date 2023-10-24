@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
-
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Structure of the database &mdash; Projet13OC 1.0 documentation</title>
+  <title>Search &mdash; Projet13OC 1.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+    
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -20,10 +20,10 @@
         <script src="_static/clipboard.min.js?v=a7894cd8"></script>
         <script src="_static/copybutton.js?v=f281be69"></script>
     <script src="_static/js/theme.js"></script>
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="CI/CD Pipeline" href="6-pipeline.html" />
-    <link rel="prev" title="Technologies" href="4-technologies.html" /> 
+    <link rel="search" title="Search" href="#" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -38,7 +38,7 @@
             Projet13OC
           </a>
 <div role="search">
-  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+  <form id="rtd-search-form" class="wy-form" action="#" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -46,20 +46,12 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="1-description.html">Project description</a></li>
 <li class="toctree-l1"><a class="reference internal" href="2-installation.html">Project installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="3-startapp.html">Start project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="4-technologies.html">Technologies</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Database</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#tables">Tables</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#lettings">1. Lettings:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#addresses">2. Addresses:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#profiles">3. Profiles</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="5-database.html">Database</a></li>
 <li class="toctree-l1"><a class="reference internal" href="6-pipeline.html">CI/CD pipeline</a></li>
 <li class="toctree-l1"><a class="reference internal" href="7-programming_interfaces.html">Programming interfaces</a></li>
 <li class="toctree-l1"><a class="reference internal" href="8-utilisation.html">Utilisation</a></li>
@@ -79,9 +71,8 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Structure of the database</li>
+      <li class="breadcrumb-item active">Search</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/5-database.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -89,53 +80,22 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="structure-of-the-database">
-<h1>Structure of the database<a class="headerlink" href="#structure-of-the-database" title="Link to this heading"></a></h1>
-<section id="tables">
-<h2>Tables<a class="headerlink" href="#tables" title="Link to this heading"></a></h2>
-<ul class="simple">
-<li><p>letting : name of the properties</p></li>
-<li><p>address : contains postal addresses of the properties</p></li>
-<li><p>profile : contains the country preference of the user</p></li>
-</ul>
-<section id="lettings">
-<h3>1. Lettings:<a class="headerlink" href="#lettings" title="Link to this heading"></a></h3>
-<ul class="simple">
-<li><p>id : automated incremental number, primary key</p></li>
-<li><p>title : the name of the property to rent, max characters 255</p></li>
-<li><p>address : foreignkey to addresses</p></li>
-</ul>
-</section>
-<section id="addresses">
-<h3>2. Addresses:<a class="headerlink" href="#addresses" title="Link to this heading"></a></h3>
-<ul class="simple">
-<li><p>id : automated incremental number, primary key</p></li>
-<li><p>number : street number, max value 9999</p></li>
-<li><p>street : name of the street, 64 characters max</p></li>
-<li><p>city : City’s name, 64 characters max</p></li>
-<li><p>state : State’s code, 2 characters max</p></li>
-<li><p>zip_code : max value 99999</p></li>
-<li><p>country_iso_code : Country’s ISO code, 3 characters max</p></li>
-</ul>
-</section>
-<section id="profiles">
-<h3>3. Profiles<a class="headerlink" href="#profiles" title="Link to this heading"></a></h3>
-<ul class="simple">
-<li><p>id : automated incremental number, primary key</p></li>
-<li><p>user : foreignkey to user’s table</p></li>
-<li><p>favorite_city : the favorite city of the user, 64 characters max</p></li>
-</ul>
-</section>
-</section>
-</section>
+  <noscript>
+  <div id="fallback" class="admonition warning">
+    <p class="last">
+      Please activate JavaScript to enable the search functionality.
+    </p>
+  </div>
+  </noscript>
 
+  
+  <div id="search-results">
+  
+  </div>
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="4-technologies.html" class="btn btn-neutral float-left" title="Technologies" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="6-pipeline.html" class="btn btn-neutral float-right" title="CI/CD Pipeline" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
+          <footer>
 
   <hr/>
 
@@ -157,7 +117,14 @@
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+  <script>
+    jQuery(function() { Search.loadIndex("searchindex.js"); });
+  </script>
+  
+  <script id="searchindexloader"></script>
+   
+
 
 </body>
 </html>

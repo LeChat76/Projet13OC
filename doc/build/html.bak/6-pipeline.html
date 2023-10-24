@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Programming interfaces &mdash; Projet13OC 1.0 documentation</title>
+  <title>CI/CD Pipeline &mdash; Projet13OC 1.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
@@ -22,8 +22,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Utilisation" href="8-utilisation.html" />
-    <link rel="prev" title="CI/CD Pipeline" href="6-pipeline.html" /> 
+    <link rel="next" title="Programming interfaces" href="7-programming_interfaces.html" />
+    <link rel="prev" title="Structure of the database" href="5-database.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -52,14 +52,8 @@
 <li class="toctree-l1"><a class="reference internal" href="3-startapp.html">Start project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="4-technologies.html">Technologies</a></li>
 <li class="toctree-l1"><a class="reference internal" href="5-database.html">Database</a></li>
-<li class="toctree-l1"><a class="reference internal" href="6-pipeline.html">CI/CD pipeline</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Programming interfaces</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#docker-desktop">Docker desktop</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#circleci">CircleCi</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#render">Render</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="8-utilisation.html">Utilisation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">CI/CD pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7-programming_interfaces.html">.. Programming interfaces</a></li>
 </ul>
 
         </div>
@@ -76,9 +70,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Programming interfaces</li>
+      <li class="breadcrumb-item active">CI/CD Pipeline</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/7-programming_interfaces.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/6-pipeline.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -86,50 +80,69 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="programming-interfaces">
-<h1>Programming interfaces<a class="headerlink" href="#programming-interfaces" title="Link to this heading"></a></h1>
-<section id="docker-desktop">
-<h2>Docker desktop<a class="headerlink" href="#docker-desktop" title="Link to this heading"></a></h2>
-<p>When you <a class="reference internal" href="3-startapp.html"><span class="doc">build an image of your project</span></a>, the file is stored localy. You can access to it with <strong>Docker Desktop</strong> interface.</p>
-<p>From this interface you can start your application by clicking on the “play button”</p>
-<img alt="_images/3-4.png" src="_images/3-4.png" />
-<img alt="_images/7-1.png" src="_images/7-1.png" />
-<p>When an image is running, an “container” is created. From there, you can stop the application</p>
-<img alt="_images/7-2.png" src="_images/7-2.png" />
-</section>
-<section id="circleci">
-<h2>CircleCi<a class="headerlink" href="#circleci" title="Link to this heading"></a></h2>
-<p>From the CircleCi site, you can access to the daskboard (need to be logged in). Here you can see all steps of the pipeline. In case of fail, you can see wich step stop the pipeline.</p>
+  <section id="ci-cd-pipeline">
+<h1>CI/CD Pipeline<a class="headerlink" href="#ci-cd-pipeline" title="Link to this heading"></a></h1>
+<p>When a modification is done on the Github repository (after a commit), CircleCi launch some commands:</p>
+<img alt="_images/6-8.png" src="_images/6-8.png" />
+<ol class="arabic simple">
+<li><p><strong>Pytest</strong>: a list of tests are launched to check if the code is stable</p></li>
+</ol>
+<img alt="_images/6-2.png" src="_images/6-2.png" />
 <ul class="simple">
-<li><p>failure case:</p></li>
+<li><p>note : you can manualy launch this command, from root folder of the application (where is located the <strong>manage.py</strong> file) and with virtual environment activated</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pytest<span class="w"> </span>--nomigrations<span class="w"> </span>--disable-warnings
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p><strong>Flake8</strong>: this module test if good practice of linting is respected</p></li>
+</ol>
+<img alt="_images/6-5.png" src="_images/6-5.png" />
+<ul class="simple">
+<li><p>note : you can manualy launch this command, from root folder of the application (where is located the <strong>manage.py</strong> file) and with virtual environment activated</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>flake8
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>if those 2 steps are clear, image is built and pushed to <strong>Docker Hub</strong></p></li>
+</ol>
+<img alt="_images/6-3.png" src="_images/6-3.png" />
+<ul class="simple">
+<li><p>note you can manually push the image to <strong>Docker Hub</strong> (you should have the image already created in Docker Desktop)</p></li>
 </ul>
 <blockquote>
-<div><img alt="_images/7-3.png" src="_images/7-3.png" />
+<div><p>First : tag the image</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>tag<span class="w"> </span>lechat76/projet13oc<span class="w"> </span>lechat76/projet13oc
+</pre></div>
+</div>
+<p>Then : deploy on <strong>Docker Hub</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>push<span class="w"> </span>lechat76/projet13oc
+</pre></div>
+</div>
 </div></blockquote>
+<ol class="arabic simple" start="4">
+<li><p>if image is well pushed, <strong>CircleCi</strong> launch <strong>Render</strong> importing image</p></li>
+</ol>
+<img alt="_images/6-1.png" src="_images/6-1.png" />
 <ul class="simple">
-<li><p>clear case:</p></li>
+<li><p>note : you can manually deploy the <strong>Docher Hub</strong> image by accessing to the <strong>deploy hook</strong> url</p></li>
 </ul>
-<blockquote>
-<div><img alt="_images/7-4.png" src="_images/7-4.png" />
-</div></blockquote>
-<p>One of the great advantage of <strong>CircleCi</strong> is you can store sensitives datas (like user and password to access to Docker, Render…). In that way, in the <strong>config.yml</strong> you can use variable stored in CircleCi that ensures that the data will not be seen. You can access via to the <strong>project settings</strong>.</p>
-<img alt="_images/7-5.png" src="_images/7-5.png" />
-</section>
-<section id="render">
-<h2>Render<a class="headerlink" href="#render" title="Link to this heading"></a></h2>
-<p><a class="reference external" href="https://render.com/">Render</a> is a “Paas” server used to deploy application from <strong>Git</strong> repository or <strong>Docker Hub</strong> image. When the <strong>deploy hook</strong> is accedded, <strong>Render</strong> download image from <strong>Docker Hub</strong> and launch web service.</p>
-<img alt="_images/7-6.png" src="_images/7-6.png" />
-<p>You can stop the web service from the setting menu</p>
-<img alt="_images/7-7.png" src="_images/7-7.png" />
-</section>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>https://api.render.com/deploy/srv-cknpo7hrfc9c73ec4tug?key<span class="o">=</span>MMvbtjc23UA
+</pre></div>
+</div>
+<p>After all those steps, web site will be reachable (<strong>Render</strong> launch automaticaly web server service)</p>
+<img alt="_images/6-9.png" src="_images/6-9.png" />
+<img alt="_images/6-6.png" src="_images/6-6.png" />
+<img alt="_images/6-7.png" src="_images/6-7.png" />
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="6-pipeline.html" class="btn btn-neutral float-left" title="CI/CD Pipeline" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="8-utilisation.html" class="btn btn-neutral float-right" title="Utilisation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="5-database.html" class="btn btn-neutral float-left" title="Structure of the database" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="7-programming_interfaces.html" class="btn btn-neutral float-right" title="Programming interfaces" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Structure of the database &mdash; Projet13OC 1.0 documentation</title>
+  <title>Programming interfaces &mdash; Projet13OC 1.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
@@ -22,8 +22,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="CI/CD Pipeline" href="6-pipeline.html" />
-    <link rel="prev" title="Technologies" href="4-technologies.html" /> 
+    <link rel="prev" title="CI/CD Pipeline" href="6-pipeline.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -51,18 +50,14 @@
 <li class="toctree-l1"><a class="reference internal" href="2-installation.html">Project installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="3-startapp.html">Start project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="4-technologies.html">Technologies</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Database</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#tables">Tables</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#lettings">1. Lettings:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#addresses">2. Addresses:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#profiles">3. Profiles</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="5-database.html">Database</a></li>
 <li class="toctree-l1"><a class="reference internal" href="6-pipeline.html">CI/CD pipeline</a></li>
-<li class="toctree-l1"><a class="reference internal" href="7-programming_interfaces.html">Programming interfaces</a></li>
-<li class="toctree-l1"><a class="reference internal" href="8-utilisation.html">Utilisation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Programming interfaces</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#docker-desktop">Docker desktop</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#circleci">CircleCi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#render">Render</a></li>
+</ul>
+</li>
 </ul>
 
         </div>
@@ -79,9 +74,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Structure of the database</li>
+      <li class="breadcrumb-item active">Programming interfaces</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/5-database.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/7-programming_interfaces.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -89,43 +84,41 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="structure-of-the-database">
-<h1>Structure of the database<a class="headerlink" href="#structure-of-the-database" title="Link to this heading"></a></h1>
-<section id="tables">
-<h2>Tables<a class="headerlink" href="#tables" title="Link to this heading"></a></h2>
-<ul class="simple">
-<li><p>letting : name of the properties</p></li>
-<li><p>address : contains postal addresses of the properties</p></li>
-<li><p>profile : contains the country preference of the user</p></li>
-</ul>
-<section id="lettings">
-<h3>1. Lettings:<a class="headerlink" href="#lettings" title="Link to this heading"></a></h3>
-<ul class="simple">
-<li><p>id : automated incremental number, primary key</p></li>
-<li><p>title : the name of the property to rent, max characters 255</p></li>
-<li><p>address : foreignkey to addresses</p></li>
-</ul>
+  <section id="programming-interfaces">
+<h1>Programming interfaces<a class="headerlink" href="#programming-interfaces" title="Link to this heading"></a></h1>
+<section id="docker-desktop">
+<h2>Docker desktop<a class="headerlink" href="#docker-desktop" title="Link to this heading"></a></h2>
+<p>When you <a class="reference internal" href="3-startapp.html"><span class="doc">build an image of your project</span></a>, the file is stored localy. You can access to it with <strong>Docker Desktop</strong> interface.</p>
+<p>From this interface you can start your application by clicking on the “play button”</p>
+<img alt="_images/3-4.png" src="_images/3-4.png" />
+<img alt="_images/7-1.png" src="_images/7-1.png" />
+<p>When an image is running, an “container” is created. From there, you can stop the application</p>
+<img alt="_images/7-2.png" src="_images/7-2.png" />
 </section>
-<section id="addresses">
-<h3>2. Addresses:<a class="headerlink" href="#addresses" title="Link to this heading"></a></h3>
+<section id="circleci">
+<h2>CircleCi<a class="headerlink" href="#circleci" title="Link to this heading"></a></h2>
+<p>From the CircleCi site, you can access to the daskboard (need to be logged in). Here you can see all steps of the pipeline. In case of fail, you can see wich step stop the pipeline.</p>
 <ul class="simple">
-<li><p>id : automated incremental number, primary key</p></li>
-<li><p>number : street number, max value 9999</p></li>
-<li><p>street : name of the street, 64 characters max</p></li>
-<li><p>city : City’s name, 64 characters max</p></li>
-<li><p>state : State’s code, 2 characters max</p></li>
-<li><p>zip_code : max value 99999</p></li>
-<li><p>country_iso_code : Country’s ISO code, 3 characters max</p></li>
+<li><p>failure case:</p></li>
 </ul>
-</section>
-<section id="profiles">
-<h3>3. Profiles<a class="headerlink" href="#profiles" title="Link to this heading"></a></h3>
+<blockquote>
+<div><img alt="_images/7-3.png" src="_images/7-3.png" />
+</div></blockquote>
 <ul class="simple">
-<li><p>id : automated incremental number, primary key</p></li>
-<li><p>user : foreignkey to user’s table</p></li>
-<li><p>favorite_city : the favorite city of the user, 64 characters max</p></li>
+<li><p>clear case:</p></li>
 </ul>
+<blockquote>
+<div><img alt="_images/7-4.png" src="_images/7-4.png" />
+</div></blockquote>
+<p>One of the great advantage of <strong>CircleCi</strong> is you can store sensitives datas (like user and password to access to Docker, Render…). In that way, in the <strong>config.yml</strong> you can use variable stored in CircleCi that ensures that the data will not be seen. You can access via to the <strong>project settings</strong>.</p>
+<img alt="_images/7-5.png" src="_images/7-5.png" />
 </section>
+<section id="render">
+<h2>Render<a class="headerlink" href="#render" title="Link to this heading"></a></h2>
+<p><a class="reference external" href="https://render.com/">Render</a> is a “Paas” server used to deploy application from <strong>Git</strong> repository or <strong>Docker Hub</strong> image. When the <strong>deploy hook</strong> is accedded, <strong>Render</strong> download image from <strong>Docker Hub</strong> and launch web service.</p>
+<img alt="_images/7-6.png" src="_images/7-6.png" />
+<p>You can stop the web service from the setting menu</p>
+<img alt="_images/7-7.png" src="_images/7-7.png" />
 </section>
 </section>
 
@@ -133,8 +126,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="4-technologies.html" class="btn btn-neutral float-left" title="Technologies" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="6-pipeline.html" class="btn btn-neutral float-right" title="CI/CD Pipeline" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="6-pipeline.html" class="btn btn-neutral float-left" title="CI/CD Pipeline" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>
