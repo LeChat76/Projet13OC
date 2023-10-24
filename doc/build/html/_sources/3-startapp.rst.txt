@@ -14,7 +14,7 @@ From the root folder of the cloned project (where is located the file **manage.p
 
     python .\manage.py runserver
 
-.. image:: /images/3-1.png
+.. image:: images/3-1.png
 
 Then, from your favorite web browser, go to:
 
@@ -34,7 +34,7 @@ Build and push image to Docker Desktop (from any folder you want):
 
     docker build -t lechat76/projet13oc:latest .
 
-.. image:: /images/3-2.png
+.. image:: images/3-2.png
 
 Then, start web server
 
@@ -42,11 +42,11 @@ Then, start web server
 
     docker run --rm --name projet13oc -p 8000:8000 lechat76/projet13oc
 
-.. image:: /images/3-3.png
+.. image:: images/3-3.png
 
 or with graphic interface
 
-.. image:: /images/3-4.png
+.. image:: images/3-4.png
 
 Finally, from your favorite web browser, go to:
 
