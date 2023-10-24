@@ -22,7 +22,6 @@ def letting(request, letting_id):
     This fonction is used to generate detailed page for a specific address
     INPUT : letting ID
     """
-    
     try:
         letting = Letting.objects.get(id=letting_id)
         send_to_sentry_message("letting", "views", f"{request.user} visit the letting {letting}")

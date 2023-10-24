@@ -7,6 +7,7 @@ def send_to_sentry_exception(tag1, tag2, exception):
     set_tag(tag1, tag2)
     capture_exception(exception)
 
+
 def send_to_sentry_message(tag1, tag2, message):
     """ method to send report to Sentry when exception captured """
 
