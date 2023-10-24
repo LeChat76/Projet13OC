@@ -35,4 +35,4 @@ language = 'en'
 
 html_theme = 'sphinx_rtd_theme'
 html_static_path = ['_images']
-# html_static_path.append(os.path.join(os.path.dirname(__file__), 'images'))
+html_static_path.append(os.path.join(os.path.dirname(__file__), 'images'))
