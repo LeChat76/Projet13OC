@@ -3,8 +3,8 @@ Project installation
 ====================
 
 First, you need to install latest version of:
- - **Python** https://www.python.org/
- - **Git** https://git-scm.com/downloads
+ - `Python <http://www.python.org/>`_
+ - `Git <https://git-scm.com/downloads>`_
 
 Then, follow steps bellow to install and start the application:
 

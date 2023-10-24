@@ -50,12 +50,13 @@
 <li class="toctree-l1"><a class="reference internal" href="1-description.html">Project description</a></li>
 <li class="toctree-l1"><a class="reference internal" href="2-installation.html">Project installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="3-startapp.html">Start project</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Technoglies</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Technologies</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#used-applications">Used applications</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#detailled-steps">Detailled steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#used-programming-language">Used programming language</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="5-database.html">Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-pipeline.html">CI/CD pipeline</a></li>
 </ul>
 
         </div>
@@ -94,54 +95,13 @@
 <li><p>To manage whole steps of the Piple CI/CD, I used <strong>CircleCi</strong> application.</p></li>
 </ul>
 </section>
-<section id="detailled-steps">
-<h2>Detailled steps<a class="headerlink" href="#detailled-steps" title="Link to this heading"></a></h2>
-<p>When a modification is done on the Github repository (after a commit), CircleCi launch some commands:</p>
-<img alt="_images/4-8.png" src="_images/4-8.png" />
-<ol class="arabic simple">
-<li><p><strong>Pytest</strong>: a list of tests are launched to check if the code is stable</p></li>
-</ol>
-<img alt="_images/4-2.png" src="_images/4-2.png" />
+<section id="used-programming-language">
+<h2>Used programming language<a class="headerlink" href="#used-programming-language" title="Link to this heading"></a></h2>
 <ul class="simple">
-<li><p>note : you can manualy launch this command, from root folder of the application (where is located the <strong>manage.py</strong> file) and with virtual environment activated</p></li>
+<li><p>This application is coded with Python</p></li>
+<li><p>For the CI/CD pipeline, we use <strong>YAML</strong> language. This langage describes the job flux. The file is located in <strong>.circleci</strong> folder, named <strong>config.yml</strong></p></li>
+<li><p>For the containerization, each steps are described in the <strong>Dockerfile</strong> file (located in the root folder of the application)</p></li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pytest<span class="w"> </span>--nomigrations<span class="w"> </span>--disable-warnings
-</pre></div>
-</div>
-<ol class="arabic simple" start="2">
-<li><p><strong>Flake8</strong>: this module test if good practice off linting is respected</p></li>
-</ol>
-<img alt="_images/4-5.png" src="_images/4-5.png" />
-<ul class="simple">
-<li><p>note : you can manualy launch this command, from root folder of the application (where is located the <strong>manage.py</strong> file) and with virtual environment activated</p></li>
-</ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>flake8
-</pre></div>
-</div>
-<ol class="arabic simple" start="3">
-<li><p>if those 2 steps are clear, image is built and pushed to <strong>Docker Hub</strong></p></li>
-</ol>
-<img alt="_images/4-3.png" src="_images/4-3.png" />
-<ul class="simple">
-<li><p>note you can manually push the image to <strong>Docker Hub</strong> (you should have the image already created in Docker Desktop)</p></li>
-</ul>
-<blockquote>
-<div><p>First : tag the image</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>tag<span class="w"> </span>lechat76/projet13oc<span class="w"> </span>lechat76/projet13oc
-</pre></div>
-</div>
-<p>Then : deploy on <strong>Docker Hub</strong></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>push<span class="w"> </span>lechat76/projet13oc
-</pre></div>
-</div>
-</div></blockquote>
-<ol class="arabic simple" start="4">
-<li><p>if image is well pushed, <strong>CircleCi</strong> launch <strong>Render</strong> importing image</p></li>
-</ol>
-<img alt="_images/4-1.png" src="_images/4-1.png" />
-<p>After all those steps, web site will be reachable (<strong>Render</strong> launch automaticaly web server service)</p>
-<img alt="_images/4-6.png" src="_images/4-6.png" />
-<img alt="_images/4-7.png" src="_images/4-7.png" />
 </section>
 </section>
 

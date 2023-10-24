@@ -15,6 +15,8 @@ Welcome to Projet13OC's documentation!
    Start project <3-startapp>
    Technologies <4-technologies>
    Database <5-database.rst>
+   CI/CD pipeline <6-pipeline>
+   Programming interfaces <7-programming_interfaces>
 
 
 Indices and tables

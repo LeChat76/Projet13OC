@@ -76,7 +76,3 @@ Si vous souhaitez une interface graphique, je conseil l'utilisation du logiciel 
 - lancez la commande `docker build -t lechat76/projet13oc:latest .`
 - executez localement l'image avec la commande `docker run --rm --name projet13oc -p 8000:8000 lechat76/projet13oc`
 - testez à nouveau l'accès à l'application en allant sur `http://localhost:8000` depuis votre navigateur internet
-
-### CircleCi
-
-- 

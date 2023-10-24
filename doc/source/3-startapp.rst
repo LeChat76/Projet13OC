@@ -22,6 +22,8 @@ Then, from your favorite web browser, go to:
 
     http://localhost:8000
 
+.. _build:
+
 -----------------
 From Docker image
 -----------------
