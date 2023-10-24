@@ -33,7 +33,7 @@ Then, follow steps bellow to install and start the application:
 
         venv/bin/activate
 
-   * with Windows
+   * with Windows10
 
     .. code-block:: bash
 
