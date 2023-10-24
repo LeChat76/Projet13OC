@@ -1,12 +1,13 @@
-version: 3
+version: 2
 
 build:
-  image: latest
+  image: ubuntu20
+  python: 3.9
 
 sphinx:
   configuration: doc/source/conf.py
 
 python:
-  version: 3.7
+  version: 3.9
   install:
     - requirements: docs/requirements.txt
