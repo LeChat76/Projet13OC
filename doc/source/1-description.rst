@@ -2,7 +2,7 @@
 Project description
 ===================
 
-.. image:: images/logo.png
+.. image:: ./images/logo.png
 
 **Orange County Lettings** is a start-up in the property rental sector. The start-up is currently expanding in the United States. So the company has decided to take on some new recruits, and you're one of them. As a developer, you're expected to play an important role in improving the company's site, both in terms of code and deployment.
 
