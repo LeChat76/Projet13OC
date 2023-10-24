@@ -39,7 +39,7 @@ Then, follow steps bellow to install and start the application:
 
         venv\Scripts\activate
 
-.. image:: 2-1.png
+.. image:: images/2-1.png
 
 - install dependancies :
 
@@ -47,4 +47,4 @@ Then, follow steps bellow to install and start the application:
     
     pip install -r requirements.txt
 
-.. image:: 2-2.png
+.. image:: images/2-2.png
