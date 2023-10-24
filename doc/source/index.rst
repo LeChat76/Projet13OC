@@ -17,11 +17,4 @@ Welcome to Projet13OC's documentation!
    Database <5-database.rst>
    CI/CD pipeline <6-pipeline>
    Programming interfaces <7-programming_interfaces>
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+   Utilisation <8-utilisation>

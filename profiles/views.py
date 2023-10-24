@@ -1,7 +1,7 @@
 import os
 from django.shortcuts import render
 from .models import Profile
-from utils.utils import send_to_sentry
+from utils.utils import send_to_sentry_exception, send_to_sentry_message
 
 
 def index(request):
@@ -11,7 +11,7 @@ def index(request):
     try:
         profiles_list = Profile.objects.all()
     except Profile.DoesNotExist:
-        send_to_sentry("profiles", "get_all", "no records found in Profile table")
+        send_to_sentry_exception("profiles", "get_all", "no records found in Profile table")
     context = {'profiles_list': profiles_list}
     template_path = os.path.join(os.path.dirname(__file__), 'templates', 'index.html')
     return render(request, template_path, context)
@@ -25,6 +25,6 @@ def profile(request, username):
     try:
         profile = Profile.objects.get(user__username=username)
     except Profile.DoesNotExist:
-        send_to_sentry("profile", "get", f"username {username} does not exists.")
+        send_to_sentry_exception("profile", "get", f"username {username} does not exists.")
     context = {'profile': profile}
     return render(request, 'profile.html', context)
