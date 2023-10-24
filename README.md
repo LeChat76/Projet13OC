@@ -64,7 +64,7 @@ exemple  de contenu de fichier `.env` : `SENTRY_DSN="https://45f906586c84632cb04
 
 Si vous souhaitez une interface graphique, je conseil l'utilisation du logiciel gratuit `DB Browser for SQLite` téléchargeable ici [https://sqlitebrowser.org/dl/]
 
-#### Panel d'administration
+#### Page d'administration
 
 - Allez sur `http://localhost:8000/admin`
 - Connectez-vous avec l'utilisateur `admin`, mot de passe `Abc1234!`
