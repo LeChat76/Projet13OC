@@ -84,11 +84,11 @@
   <section id="ci-cd-pipeline">
 <h1>CI/CD Pipeline<a class="headerlink" href="#ci-cd-pipeline" title="Link to this heading"></a></h1>
 <p>When a modification is done on the Github repository (after a commit), CircleCi launch some commands:</p>
-<img alt="_images/6-8.png" src="_images/6-8.png" />
+<img alt="_images/6-8.PNG" src="_images/6-8.PNG" />
 <ol class="arabic simple">
 <li><p><strong>Pytest</strong>: a list of tests are launched to check if the code is stable</p></li>
 </ol>
-<img alt="_images/6-2.png" src="_images/6-2.png" />
+<img alt="_images/6-2.PNG" src="_images/6-2.PNG" />
 <ul class="simple">
 <li><p>note : you can manualy launch this command, from root folder of the application (where is located the <strong>manage.py</strong> file) and with virtual environment activated</p></li>
 </ul>
@@ -98,7 +98,7 @@
 <ol class="arabic simple" start="2">
 <li><p><strong>Flake8</strong>: this module test if good practice of linting is respected</p></li>
 </ol>
-<img alt="_images/6-5.png" src="_images/6-5.png" />
+<img alt="_images/6-5.PNG" src="_images/6-5.PNG" />
 <ul class="simple">
 <li><p>note : you can manualy launch this command, from root folder of the application (where is located the <strong>manage.py</strong> file) and with virtual environment activated</p></li>
 </ul>
@@ -108,7 +108,7 @@
 <ol class="arabic simple" start="3">
 <li><p>if those 2 steps are clear, image is built and pushed to <strong>Docker Hub</strong></p></li>
 </ol>
-<img alt="_images/6-3.png" src="_images/6-3.png" />
+<img alt="_images/6-3.PNG" src="_images/6-3.PNG" />
 <ul class="simple">
 <li><p>note you can manually push the image to <strong>Docker Hub</strong> (you should have the image already created in Docker Desktop)</p></li>
 </ul>
@@ -125,7 +125,7 @@
 <ol class="arabic simple" start="4">
 <li><p>if image is well pushed, <strong>CircleCi</strong> launch <strong>Render</strong> importing image</p></li>
 </ol>
-<img alt="_images/6-1.png" src="_images/6-1.png" />
+<img alt="_images/6-1.PNG" src="_images/6-1.PNG" />
 <ul class="simple">
 <li><p>note : you can manually deploy the <strong>Docher Hub</strong> image by accessing to the <strong>deploy hook</strong> url</p></li>
 </ul>
@@ -133,9 +133,9 @@
 </pre></div>
 </div>
 <p>After all those steps, web site will be reachable (<strong>Render</strong> launch automaticaly web server service)</p>
-<img alt="_images/6-9.png" src="_images/6-9.png" />
-<img alt="_images/6-6.png" src="_images/6-6.png" />
-<img alt="_images/6-7.png" src="_images/6-7.png" />
+<img alt="_images/6-9.PNG" src="_images/6-9.PNG" />
+<img alt="_images/6-6.PNG" src="_images/6-6.PNG" />
+<img alt="_images/6-7.PNG" src="_images/6-7.PNG" />
 </section>
 
 
